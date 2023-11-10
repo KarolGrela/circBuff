@@ -40,10 +40,6 @@ CFLAGS=-I. -I$(PATHU) -I$(PATHS) -DTEST
 
 RESULTS = $(patsubst $(PATHT)Test%.c,$(PATHR)Test%.txt,$(SRCT) )
 
-PASSED = `grep -s PASS $(PATHR)*.txt`
-FAIL = `grep -s FAIL $(PATHR)*.txt`
-IGNORE = `grep -s IGNORE $(PATHR)*.txt`
-
 OBJ_FILES = $(wildcard $(PATHO)*.o)
 EXE_FILES = $(wildcard $(PATHB)*.$(TARGET_EXTENSION))
 TXT_FILES = $(wildcard $(PATHR)*.txt)
@@ -52,16 +48,12 @@ RUN_SRC_FILES = $(wildcard $(PATHS)*.c)
 RUN_OBJ_FILES = $(patsubst $(PATHS)%.c, $(PATHO)%.o, $(RUN_SRC_FILES))
 
 test: $(BUILD_PATHS) $(RESULTS)
-	@echo "-----------------------\nIGNORES:\n-----------------------"
-	@echo "$(IGNORE)"
-	@echo "-----------------------\nFAILURES:\n-----------------------"
-	@echo "$(FAIL)"
-	@echo "-----------------------\nPASSED:\n-----------------------"
-	@echo "$(PASSED)"
-	@echo "\nDONE"
+	@echo perform-tests
+	$(subst /,\, .\$(PATHBAT)bat_read_results.bat)
 
 $(PATHR)%.txt: $(PATHB)%.$(TARGET_EXTENSION)
 	$(subst /,\, -./$< > $@ 2>&1)
+
 
 $(PATHB)Test%.$(TARGET_EXTENSION): $(PATHO)Test%.o $(PATHO)%.o $(PATHO)unity.o #$(PATHD)Test%.d
 	$(LINK) -o $@ $^
