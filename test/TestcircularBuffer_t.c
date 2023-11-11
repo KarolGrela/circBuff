@@ -645,6 +645,11 @@ void test_circularBuffer_push_string_ret_val_not_null(void)
     TEST_ASSERT_EQUAL_HEX32(expected_retVal, observed_retVal);
 }
 
+void test_ignore(void)
+{
+    TEST_IGNORE();
+}
+
 
 int main(void)
 {
@@ -694,6 +699,10 @@ int main(void)
     RUN_TEST(test_circularBuffer_push_string);
     RUN_TEST(test_circularBuffer_push_string_ret_val_null); 
     RUN_TEST(test_circularBuffer_push_string_ret_val_not_null);
+
+    RUN_TEST(test_ignore);
+
+    
 
     return UNITY_END();
 }
