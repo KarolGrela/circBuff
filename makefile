@@ -52,7 +52,7 @@ test: $(BUILD_PATHS) $(RESULTS)
 
 $(PATHR)%.txt: $(PATHB)%.$(TARGET_EXTENSION)
 	$(subst /,\, -./$< > $@ 2>&1)
-	$(subst /,\, .\$(PATHBAT)bat_read_results.bat $@)
+	$(subst /,\, .\$(PATHBAT)bat_print_results.bat $@)
 
 $(PATHB)Test%.$(TARGET_EXTENSION): $(PATHO)Test%.o $(PATHO)%.o $(PATHO)unity.o #$(PATHD)Test%.d
 	$(LINK) -o $@ $^
