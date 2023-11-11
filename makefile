@@ -49,11 +49,10 @@ RUN_OBJ_FILES = $(patsubst $(PATHS)%.c, $(PATHO)%.o, $(RUN_SRC_FILES))
 
 test: $(BUILD_PATHS) $(RESULTS)
 	@echo perform-tests
-	$(subst /,\, .\$(PATHBAT)bat_read_results.bat)
 
 $(PATHR)%.txt: $(PATHB)%.$(TARGET_EXTENSION)
 	$(subst /,\, -./$< > $@ 2>&1)
-
+	$(subst /,\, .\$(PATHBAT)bat_read_results.bat $@)
 
 $(PATHB)Test%.$(TARGET_EXTENSION): $(PATHO)Test%.o $(PATHO)%.o $(PATHO)unity.o #$(PATHD)Test%.d
 	$(LINK) -o $@ $^
